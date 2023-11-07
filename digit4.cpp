@@ -2,7 +2,9 @@
 #include <stdbool.h>
 #include <math.h>
 
-bool check(long long n)
+typedef long long ll;
+
+bool check(ll n)
 {
 	int sum = 0;
 	while (n)
@@ -18,9 +20,9 @@ bool check(long long n)
 	return sum % 10 ? false : true;
 }
 
-bool palindromic(long long n)
+bool palindromic(ll n)
 {
-	long long reverse = 0, temp = n;
+	ll reverse = 0, temp = n;
 	int remainder = 0;
 	while (n)
 	{
@@ -35,9 +37,9 @@ void solve()
 {
 	int n = 0;
 	scanf("%d", &n);
-	int l = pow(10, n - 1);
-	int r = pow(10, n);
-	for (long long i = l; i < r; i++)
+	ll l = pow(10, n - 1);
+	ll r = pow(10, n);
+	for (ll i = l; i < r; i++)
 		if (check(i) && palindromic(i))
 			printf("%lld ", i);
 	printf("\n");
