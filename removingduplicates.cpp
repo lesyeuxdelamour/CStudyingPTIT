@@ -1,34 +1,24 @@
-#include<stdio.h>
-#define max 100
+#include <stdio.h>
+#define max 10000001
 
-void input(int arr[], int n)
-{
-	for(int i = 0; i < n; i++)
-	{
-		scanf("%d", &arr[i]);
-	}
-}
-
-void duplicates(int arr[], int app[], int n)
-{
-	for(int i = 0; i < n; i++)
-	{
-		for(int j = 0; j < n ; j++)
-		{
-			if(arr[i] == arr[j] && i != j)
-			{
-				arr[j] = 0;
-			}
-		}
-		if(arr[i] != 0)
-			printf("%d ", arr[i]);
-	}
-}
+int arr[101], count[max], val[101];
 
 int main()
 {
-	int n = 0, arr[max] = {}, app[max] = {};
-		scanf("%d", &n);
-	input(arr, n);
-	duplicates(arr, app, n);
-}	
+	int n, m = 0;
+	scanf("%d", &n);
+	for (int i = 0; i < n; ++i)
+	{
+		scanf("%d", &arr[i]);
+		count[arr[i]]++;
+	}
+	for (int i = 0; i < n; ++i)
+		if (count[arr[i]] > 0)
+		{
+			val[m++] = arr[i];
+			count[arr[i]] = 0;
+		}
+	for (int i = 0; i < m; ++i)
+		printf("%d ", val[i]);
+	return 0;
+}

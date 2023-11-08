@@ -1,38 +1,33 @@
-#include<stdio.h>
-#define max 100
+#include <stdio.h>
 
-void input(int a[], int n)
-{
-	for(int i = 0; i < n; i++)
-		scanf("%d", &a[i]);
-}
+int arr[101];
 
-void palindromic(int a[], int n)
+int palind(int *arr, int n)
 {
-	int palindromic = 0;
-	for(int i = 0; i < n/2 && n != 0; i++)
+	int l = 0, r = n - 1;
+	while (l < r)
 	{
-		if(a[i] != a[n-i-1])
+		if (arr[l] == arr[r])
 		{
-			palindromic = 1;
-			break;
+			l++;
+			r--;
 		}
+		else
+			return 0;
 	}
-	if(palindromic == 1)
-		printf("NO\n");
-	else
-		printf("YES\n");
+	return 1;
 }
 
 int main()
 {
-	int t = 0;
-		scanf("%d", &t);
-	while(t--)
+	int t, n;
+	scanf("%d", &t);
+	while (t--)
 	{
-		int n = 0, a[max] = {};
-			scanf("%d", &n);
-		input(a, n);
-		palindromic(a, n);	
+		scanf("%d", &n);
+		for (int i = 0; i < n; ++i)
+			scanf("%d", &arr[i]);
+		printf(palind(arr, n) ? "YES\n" : "NO\n");
 	}
+	return 0;
 }

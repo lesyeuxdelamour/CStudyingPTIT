@@ -1,32 +1,17 @@
-#include<stdio.h>
-#define max 100
+#include <stdio.h>
 
-void input(int arr[], int n)
-{
-	for(int i = 0; i < n; i++)
-	{
-		scanf("%d", &arr[i]);
-	}
-}
-
-void left(int arr[], int n, int t)
-{
-	for(int j = 0; j < n; j++)
-	{
-		if(j < n-t) 
-			printf("%d ", arr[j+t]);
-		else
-			printf("%d ", arr[j-n+t]);
-	}
-}
+int arr[101];
 
 int main()
 {
-	int n = 0, arr[max];
-		scanf("%d", &n);
-	input(arr, n);
-	int t = 0;
-		scanf("%d", &t);
-	left(arr, n, t);
+	int n, k;
+	scanf("%d", &n);
+	for (int i = 0; i < n; ++i)
+		scanf("%d", &arr[i]);
+	scanf("%d", &k);
+	for (int i = k; i < n; ++i)
+		printf("%d ", arr[i]);
+	for (int i = 0; i < k; ++i)
+		printf("%d ", arr[i]);
 	return 0;
 }

@@ -45,7 +45,7 @@ int main()
 	int t = -1;
 	while(t)
 	{
-		scanf("%d", &t);
+		scanf("%d\n", &t);
 		if(t)
 			printf("%d\n", solve(t));
 	}
