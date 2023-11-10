@@ -1,67 +1,33 @@
-#include<stdio.h>
-#define max 100
+#include <stdio.h>
+#include <stdlib.h>
 
-void input1(int arr1[], int n)
-{
-	for(int i = 0; i < n; i++)
-	{
-		scanf("%d", &arr1[i]);
-	}
-}
+int val[201], c[1001];
 
-void input2(int arr2[], int m)
+int cmp(const void *a, const void *b)
 {
-	for(int i = 0; i < m; i++)
-	{
-		scanf("%d", &arr2[i]);
-	}
-}
-
-void un(int arr1[], int n, int arr2[], int m, int uni[], int t)
-{
-	for(int i = 0; i < n; i++)
-	{
-		uni[i] = arr1[i];
-	}
-	for(int j = 0; j < m; j++)
-	{
-		uni[j+n] = arr2[j];
-	}
-	t = m+n;
-	for(int k = 0; k < t; k++)
-	{
-		int temp = 0;
-		for(int l = k+1; l < t; l++)
-		{
-			if(uni[k] > uni[l])
-			{
-				temp = uni[k];
-				uni[k] = uni[l];
-				uni[l] = temp;
-			}
-		}
-		int check = 1;
-		for(int g = 0; g < k; g++)
-		{
-			if(uni[k] == uni[g] && k != g)
-			{
-				check = 0;
-				break;
-			}
-		}
-		if(check)
-			printf("%d ", uni[k]);
-	}
+	return *(int *)a - *(int *)b;
 }
 
 int main()
 {
-	int n = 0, m = 0 ,arr1[max], arr2[max];
-		scanf("%d%d", &n, &m);
-	input1(arr1, n);
-	input2(arr2, m);
-	int t = 0, uni[max*2];
-	un(arr1, n, arr2, m, uni, t);
+	int n, m;
+	scanf("%d%d", &n, &m);
+	for (int i = 0; i < n; ++i)
+	{
+		scanf("%d", &val[i]);
+		c[val[i]]++;
+	}
+	for (int i = n; i < n + m; ++i)
+	{
+		scanf("%d", &val[i]);
+		c[val[i]]++;
+	}
+	qsort(val, n + m, sizeof(int), cmp);
+	for (int i = 0; i < n + m; ++i)
+		if(c[val[i]])
+		{
+			printf("%d ", val[i]);
+			c[val[i]] = 0;
+		}
 	return 0;
 }
-

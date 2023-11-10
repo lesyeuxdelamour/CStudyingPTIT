@@ -1,38 +1,37 @@
-#include<stdio.h>
-#define max 100
+#include <stdio.h>
+#include <stdbool.h>
+#include <string.h>
+#define MAX 1000001
 
-int prime(int n)
-{
-	for(int i = 2; i*i <=n; i++)
-		if(n%i == 0)
-			return 0;
-	return n > 1;
-}
+bool prime[MAX];
+int arr[101];
 
-void input(int n, int arr[])
+void sieve()
 {
-	for(int i = 0; i < n; i++)
-		scanf("%d", &arr[i]);
-}
-
-void output(int n, int arr[])
-{
-	for(int i = 0; i < n; i++)
-		if(prime(arr[i]))
-			printf("%d ", arr[i]);
-	printf("\n");
+	memset(prime, true, sizeof(prime));
+	prime[0] = prime[1] = false;
+	for (int p = 2; p * p <= MAX; ++p)
+	{
+		if (prime[p])
+			for (int i = p * p; i < MAX; i += p)
+				prime[i] = false;
+	}
 }
 
 int main()
 {
-	int t = 0;
-		scanf("%d", &t);
-	while(t--)
+	sieve();
+	int t, n;
+	scanf("%d", &t);
+	while (t--)
 	{
-		int n = 0, arr[max];
-			scanf("%d", &n);
-		input(n, arr);
-		output(n, arr);		
+		scanf("%d", &n);
+		for (int i = 0; i < n; ++i)
+			scanf("%d", &arr[i]);
+		for (int i = 0; i < n; ++i)
+			if (prime[arr[i]])
+				printf("%d ", arr[i]);
+		printf("\n");
 	}
-	
+	return 0;
 }

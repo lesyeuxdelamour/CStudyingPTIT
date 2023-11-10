@@ -1,38 +1,29 @@
-#include<stdio.h>
-#define max 25
+#include <stdio.h>
 
-void input(int arr[max][max], int m, int n)
-{
-	for(int i = 0; i < m; i++)
-		for (int j = 0; j < n; j++)
-			scanf("%d", &arr[i][j]);
-}
+int arr[20][20];
 
-void switchcol(int arr[max][max], int m, int n, int x, int y)
+void swap(int *a, int *b)
 {
-	for(int i = 0; i < m; i++)
-	{
-		for (int j = 0; j < n; j++)
-		{
-			if(j == x)
-				printf("%d ", arr[i][y]);
-			else if(j == y)
-				printf("%d ", arr[i][x]);
-			else
-				printf("%d ", arr[i][j]);
-		}
-		printf("\n");
-	}
+	int temp = *a;
+	*a = *b;
+	*b = temp;
 }
 
 int main()
 {
-	int m = 0, n = 0, arr[max][max] = {};
-		scanf("%d%d", &m, &n);
-	input(arr, m, n);
-	int x = 0, y = 0;
-		scanf("%d%d", &x, &y);
-	x--; y--;
-	switchcol(arr, m, n, x, y);
+	int n, m, x, y;
+	scanf("%d%d", &m, &n);
+	for (int i = 0; i < m; ++i)
+		for (int j = 0; j < n; ++j)
+			scanf("%d", &arr[i][j]);
+	scanf("%d%d", &x, &y);
+	for (int i = 0; i < m; ++i)
+		swap(&arr[i][x - 1], &arr[i][y - 1]);
+	for (int i = 0; i < m; ++i)
+	{
+		for (int j = 0; j < n; ++j)
+			printf("%d ", arr[i][j]);
+		printf("\n");
+	}
 	return 0;
 }

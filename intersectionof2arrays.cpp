@@ -1,69 +1,69 @@
-#include<stdio.h>
-#define max 100
+#include <stdio.h>
+#include <stdlib.h>
 
-void input1(int arr1[], int n)
-{
-	for(int i = 0; i < n; i++)
-	{
-		scanf("%d", &arr1[i]);
-	}
-}
+int val[201], a[1001], b[1001];
 
-void input2(int arr2[], int m)
+int cmp(const void *a, const void *b)
 {
-	for(int i = 0; i < m; i++)
-	{
-		scanf("%d", &arr2[i]);
-	}
-}
-
-void intersec(int arr1[], int n, int arr2[], int m, int inter[], int t)
-{
-	for(int i = 0; i < n; i++)
-	{
-		for(int j = 0; j < m; j++)
-		{
-			if(arr1[i] == arr2[j])
-			{
-				inter[t] = arr1[i];
-				t++;
-			}
-		}
-	}
-	for(int k = 0; k < t; k++)
-	{
-		int temp = 0;
-		for(int l = k+1; l < t; l++)
-		{
-			if(inter[k] > inter[l])
-			{
-				temp = inter[k];
-				inter[k] = inter[l];
-				inter[l] = temp;
-			}
-		}
-		int check = 1;
-		for(int g = 0; g < k; g++)
-		{
-			if(inter[k] == inter[g] && k != g)
-			{
-				check = 0;
-				break;
-			}
-		}
-		if(check)
-			printf("%d ", inter[k]);
-	}
+	return *(int *)a - *(int *)b;
 }
 
 int main()
 {
-	int n = 0, m = 0 ,arr1[max], arr2[max];
-		scanf("%d%d", &n, &m);
-	input1(arr1, n);
-	input2(arr2, m);
-	int t = 0, inter[max];
-	intersec(arr1, n, arr2, m, inter, t);
+	int n, m;
+	scanf("%d%d", &n, &m);
+	for (int i = 0; i < n; ++i)
+	{
+		scanf("%d", &val[i]);
+		a[val[i]]++;
+	}
+	for (int i = n; i < n + m; ++i)
+	{
+		scanf("%d", &val[i]);
+		b[val[i]];
+	}
+	qsort(val, n + m, sizeof(int), cmp);
+	for (int i = 0; i < n + m; ++i)
+		if (a[val[i]] && b[val[i]])
+		{
+			printf("%d ", val[i]);
+			a[val[i]] = b[val[i]] = 0;
+		}
 	return 0;
 }
 
+/*
+#include <stdio.h>
+#include <stdlib.h>
+
+int val[201], count[1001];
+
+int cmp(const void *a, const void *b)
+{
+	return *(int *)a - *(int *)b;
+}
+
+int main()
+{
+	int n, m;
+	scanf("%d%d", &n, &m);
+	for (int i = 0; i < n; ++i)
+	{
+		scanf("%d", &val[i]);
+		count[val[i]]++;
+	}
+	for (int i = n; i < n + m; ++i)
+	{
+		scanf("%d", &val[i]);
+		count[val[i]]++;
+	}
+	qsort(val, n + m, sizeof(int), cmp);
+	for (int i = 0; i < n + m; ++i)
+		if (count[val[i]]w) // có thể tồn tại các phần tử trùng nhau trong 1 mảng
+		{
+			printf("%d ", val[i]);
+			count[val[i]] = 0;
+		}
+	return 0;
+}
+*/

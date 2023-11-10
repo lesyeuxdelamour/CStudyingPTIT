@@ -1,28 +1,31 @@
-#include<stdio.h>
-#define max 100
+#include <stdio.h>
+
+int arr[100][100];
 
 int main()
 {
-	int n = 0, t = 1, k = 0, i, arr[max][max];
-		scanf("%d", &n);
-	int canh = n;
-	while(k <= n/2)
+	int n, val = 1;
+	scanf("%d", &n);
+	int size = n;
+	while (size > n / 2)
 	{
-		for(i = k; i < canh; i++)
-			arr[k][i] = t++;
-		for(i = k+1; i < canh; i++)
-			arr[i][canh-1] = t++;
-		for(i = canh-2; i >= k; i--)
-			arr[canh-1][i] = t++;
-		for(i = canh-2; i > k; i--)
-			arr[i][k] = t++;
-		canh--; k++;
+		for (int j = n - size; j < size - 1; ++j)
+			arr[n - size][j] = val++;
+		for (int i = n - size; i < size - 1; ++i)
+			arr[i][size - 1] = val++;
+		for (int j = size - 1; j > n - size; --j)
+			arr[size - 1][j] = val++;
+		for (int i = size - 1; i > n - size; --i)
+			arr[i][n - size] = val++;
+		size -= 1;
 	}
-	for(int a = 0; a < n; a++)
+	if (n % 2)
+		arr[n / 2][n / 2] = val;
+	for (int i = 0; i < n; ++i)
 	{
-		for (int b = 0; b < n; b++)
-			printf("%2d ", arr[a][b]);
+		for (int j = 0; j < n; ++j)
+			printf("%4d ", arr[i][j]);
 		printf("\n");
 	}
-	return 0;	
+	return 0;
 }
