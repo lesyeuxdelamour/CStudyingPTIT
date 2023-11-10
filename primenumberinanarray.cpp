@@ -10,7 +10,7 @@ void sieve()
 {
 	memset(prime, true, sizeof(prime));
 	prime[0] = prime[1] = false;
-	for (int p = 2; p * p <= MAX; ++p)
+	for (int p = 2; p * p < MAX; ++p)
 	{
 		if (prime[p])
 			for (int i = p * p; i < MAX; i += p)

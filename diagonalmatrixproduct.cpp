@@ -1,54 +1,44 @@
-#include<stdio.h>
-#define max 20
+#include <stdio.h>
+#include <string.h>
 
-void matrix(int matrixN[max][max], int n)
+int arr[20][20], arr_t[20][20], arrx_t[20][20];
+
+void transpose(int arr[20][20], int arr_t[20][20], int n)
 {
-	for(int i = 0; i < n; i++)
-		for(int j = 0; j < i+1; j++)
-			matrixN[i][j] = j+1;
+	for (int i = 0; i < n; ++i)
+		for (int j = 0; j < n; ++j)
+			arr_t[i][j] = arr[j][i];
 }
 
-void rotate(int matrixN[max][max], int matrixN2[max][max], int n)
+void matrixproduct(int arr[20][20], int arr_t[20][20], int arrx_t[20][20], int n)
 {
-	for(int i = 0; i < n; i++)
-		for (int j = 0; j < n; j++)
-			matrixN2[i][j] = matrixN[j][i];
-}
-
-void matrixproduct(int matrixN[max][max], int matrixN2[max][max], int matrixNxN2[max][max], int n)
-{
-	for(int i = 0; i < n; i++)
+	for (int i = 0; i < n; i++)
 	{
-		for(int j = 0; j < n; j++)
+		for (int j = 0; j < n; j++)
 		{
-			for(int k = 0; k < n; k++)
-			{
-				matrixNxN2[i][j] += matrixN[i][k] * matrixN2[k][j];
-			}
+			for (int k = 0; k < n; k++)
+				arrx_t[i][j] += arr[i][k] * arr_t[k][j];
+			printf("%d ", arrx_t[i][j]);
 		}
-	}
-	for(int i = 0; i < n; i++)
-	{
-		for (int j = 0; j < n; j++)
-			printf("%d ", matrixNxN2[j][i]);
 		printf("\n");
 	}
 }
 
 int main()
 {
-	int t = 0;
-		scanf("%d", &t);
-	for(int i = 1; i <= t; i++)
+	int t, test = 0;
+	scanf("%d", &t);
+	while (test++ < t)
 	{
-		int n = 0;
-			scanf("%d", &n);
-		printf("Test %d:\n", i);
-		int matrixN[max][max] = {0}, matrixN2[max][max] = {0};
-		matrix(matrixN, n);
-		rotate(matrixN, matrixN2, n);
-		int matrixNxN2[max][max] = {0};
-		matrixproduct(matrixN, matrixN2, matrixNxN2, n);
+		int n;
+		scanf("%d", &n);
+		for (int i = n - 1; i >= 0; --i)
+			for (int j = i; j >= 0; --j)
+				arr[i][j] = j + 1;
+		transpose(arr, arr_t, n);
+		printf("Test %d:\n", test);
+		memset(arrx_t, 0, sizeof(arrx_t)); 
+		matrixproduct(arr, arr_t, arrx_t, n);
 	}
 	return 0;
 }

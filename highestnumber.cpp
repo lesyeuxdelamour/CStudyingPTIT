@@ -1,42 +1,30 @@
-#include<stdio.h>
-#define max 100
+#include <stdio.h>
 
-void input(int n, int arr[])
-{
-	for(int i = 0; i < n; i++)
-		scanf("%d", &arr[i]);
-}
+int arr[101];
 
-int highest(int n, int arr[], int high)
+int max(int a, int b)
 {
-	for(int i = 0; i < n; i++)
-	{
-		if(arr[i] > high)
-			high = arr[i];
-	}
-	return high;
-}
-
-void output(int n, int arr[], int high)
-{
-	for(int i = 0; i < n; i++)
-		if(arr[i] == highest(n, arr, high))
-			printf("%d ", i);
-	printf("\n");
+	return a > b ? a : b;
 }
 
 int main()
 {
-	int t = 0;
-		scanf("%d", &t);
-	while(t--)
+	int t, n;
+	scanf("%d", &t);
+	while (t--)
 	{
-		int n = 0, arr[max], high = 0;
-			scanf("%d", &n);
-		input(n, arr);
-		highest(n, arr, high);
-		printf("%d\n", highest(n, arr, high));
-		output(n, arr, high);	
+		scanf("%d", &n);
+		int maxEle = -1;
+		for (int i = 0; i < n; ++i)
+		{
+			scanf("%d", &arr[i]);
+			maxEle = max(maxEle, arr[i]);
+		}
+		printf("%d\n", maxEle);
+		for (int i = 0; i < n; ++i)
+			if (arr[i] == maxEle)
+				printf("%d ", i);
+		printf("\n");
 	}
 	return 0;
 }
