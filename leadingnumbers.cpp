@@ -1,31 +1,29 @@
-#include<stdio.h>
-#define max 1000
+#include <stdio.h>
 
-void leading()
-{
-	int n = 0, arr[max], check = 0;
-		scanf("%d", &n);
-	for(int i = 0; i < n; i++)
-		scanf("%d", &arr[i]);
-	for(int j = 0; j < n-1; j++)
-	{
-		for(int k = j+1; k < n; k++)
-			if(arr[j] <= arr[k])
-				check = 1;
-		if(check == 0)
-			printf("%d ", arr[j]);
-		else
-			check = 0;
-	}
-	printf("%d", arr[n-1]);
-	printf("\n");
-}
+int arr[1001];
 
 int main()
 {
-	int t = 0;
-		scanf("%d", &t);
-	while(t--)
-		leading();
+	int t, n;
+	scanf("%d", &t);
+	while (t--)
+	{
+		scanf("%d", &n);
+		for (int i = 0; i < n; ++i)
+			scanf("%d", &arr[i]);
+		for (int i = 0; i < n - 1; ++i)
+		{
+			int flag = 1;
+			for (int j = i + 1; j < n; ++j)
+				if (arr[i] <= arr[j])
+				{
+					flag = 0;
+					break;
+				}
+			if (flag)
+				printf("%d ", arr[i]);
+		}
+		printf("%d\n", arr[n - 1]);
+	}
 	return 0;
 }
