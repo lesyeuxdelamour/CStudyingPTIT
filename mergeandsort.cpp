@@ -1,58 +1,35 @@
-#include<stdio.h>
-#define max 100
+#include <stdio.h>
+#include <stdlib.h>
 
-void swap(int *a, int *b)
+int cmp1(const void *a, const void *b)
 {
-	int temp = *a;
-	*a = *b;
-	*b = temp;
+	return *(int *)a - *(int *)b;
 }
 
-void input(int arr[max], int n)
+int cmp2(const void *a, const void *b)
 {
-	for(int i = 0; i < n; i++)
-		scanf("%d", &arr[i]);
-}
-
-void increase(int arr[max], int n)
-{
-	for(int i = 0; i < n-1; i++)
-		for(int j = i+1; j < n; j++)
-			if(arr[i] > arr[j])
-				swap(&arr[i], &arr[j]);
-}
-
-void decrease(int arr[], int n)
-{
-	for(int i = 0; i < n-1; i++)
-		for(int j = i+1; j < n; j++)
-			if(arr[i] < arr[j])
-				swap(&arr[i], &arr[j]);
-}
-
-void output(int arr1[max], int arr2[max], int n)
-{
-	for(int i = 0; i < n; i++)
-		printf("%d %d ", arr1[i], arr2[i]);
-	printf("\n");
+	return *(int *)b - *(int *)a;
 }
 
 int main()
 {
-	int t = 0;
-		scanf("%d", &t);
-	for(int i = 0; i < t; i++)
+	int t, test = 0;
+	scanf("%d", &t);
+	while (test++ < t)
 	{
-		int n = 0, arr1[max], arr2[max];
-			scanf("%d", &n);
-		input(arr1, n);
-		input(arr2, n);
-		increase(arr1, n);
-		decrease(arr2, n);
-		printf("Test %d:\n", i+1);
-		output(arr1, arr2, n);
+		int a[101], b[101];
+		int n;
+		scanf("%d", &n);
+		for (int i = 0; i < n; ++i)
+			scanf("%d", &a[i]);
+		for (int i = 0; i < n; ++i)
+			scanf("%d", &b[i]);
+		qsort(a, n, sizeof(int), cmp1);
+		qsort(b, n, sizeof(int), cmp2);
+		printf("Test %d:\n", test);
+		for (int i = 0; i < n; ++i)
+			printf("%d %d ", a[i], b[i]);
+		printf("\n");
 	}
 	return 0;
 }
-
-

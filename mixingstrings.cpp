@@ -5,8 +5,8 @@ void mix(char *s1, char *s2, char *s12, int t)
 {
 	for(int i = 0, j = 0; i < t, j < 2*t; i++, j+=2)
 	{
-		s12[j] = s2[i];
-		s12[j+1] = s1[i];
+		s12[j] = s1[i];
+		s12[j+1] = s2[i];
 	}
 	s12[2*t] = '\0';
 }
@@ -23,13 +23,13 @@ void split(char *s1, char *s2, char *s12, int t)
 int solve(int t)
 {
 	char s1[t], s2[t], s12[2*t+1];
-		scanf("%s%s%s", s1, s2, s12);
+	scanf("%s%s%s", s1, s2, s12);
 	char c1[t], c2[t], c12[2*t+1];
-		strcpy(c1, s1); strcpy(c2, s2);
+	strcpy(c1, s1); strcpy(c2, s2);
 	int count = 0;
 	while(1)
 	{
-		++count;
+		count++;
 		mix(c1, c2, c12, t); 
 		if(strcmp(s12, c12) == 0)
 			return count;

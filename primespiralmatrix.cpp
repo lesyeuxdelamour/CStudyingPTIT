@@ -1,69 +1,58 @@
-#include<stdio.h>
-#define max 25
+#include <stdio.h>
+#include <stdbool.h>
+#include <string.h>
+#define MAX 1000001
 
-int prime(int n)
-{
-	for(int i = 2; i*i <= n; i++)
-		if(n%i == 0)
-			return 0;
-	return n > 1;
-}
+bool prime[MAX];
+int arr[20][20], val[78498];
 
-void primes(int primeArray[])
+void sieve()
 {
-	int count = 0;
-	for(int i = 2; i < 2500; i++)
+	memset(prime, true, sizeof(prime));
+	prime[0] = prime[1] = false;
+	for (int p = 2; p * p < MAX; ++p)
 	{
-		if(prime(i))
-		{
-			primeArray[count] = i;
-			count++;
-		}
+		if (prime[p])
+			for (int i = p * p; i < MAX; i += p)
+				prime[i] = false;
 	}
+	int count = 0;
+	for (int i = 2; i < MAX; ++i)
+		if (prime[i])
+			val[count++] = i;
 }
 
 int main()
 {
-	int t = 0;
-		scanf("%d", &t);
-	for(int s = 0; s < t; s++)
+	sieve();
+	int t, test;
+	scanf("%d", &t);
+	while (test++ < t)
 	{
-		int n = 0, count = 0, k = 0, primeArray[361], arr[max][max];
-			scanf("%d", &n);
-		primes(primeArray);
-		printf("Test %d:\n", s+1);
-		int canh = n;
-		while(k <= n/2)
+		int n, count = 0;
+		scanf("%d", &n);
+		int size = n;
+		while (size > n / 2)
 		{
-			for(int i = k; i < canh; i++)
-			{
-				arr[k][i] = primeArray[count];
-				count++;
-			}
-			for(int i = k+1; i < canh; i++)
-			{
-				arr[i][canh-1] = primeArray[count];
-				count++;
-			}
-			for(int i = canh-2; i >= k; i--)
-			{
-				arr[canh-1][i] = primeArray[count];
-				count++;
-			}
-			for(int i = canh-2; i > k; i--)
-			{
-				arr[i][k] = primeArray[count];
-				count++;
-			}
-			canh--; k++;
+			for (int j = n - size; j < size - 1; ++j)
+				arr[n - size][j] = val[count++];
+			for (int i = n - size; i < size - 1; ++i)
+				arr[i][size - 1] = val[count++];
+			for (int j = size - 1; j > n - size; --j)
+				arr[size - 1][j] = val[count++];
+			for (int i = size - 1; i > n - size; --i)
+				arr[i][n - size] = val[count++];
+			size -= 1;
 		}
-		for(int a = 0; a < n; a++)
+		if (n % 2)
+			arr[n / 2][n / 2] = val[count++];
+		printf("Test %d:\n", test);
+		for (int i = 0; i < n; ++i)
 		{
-			for (int b = 0; b < n; b++)
-				printf("%4d ", arr[a][b]);
+			for (int j = 0; j < n; ++j)
+				printf("%4d ", arr[i][j]);
 			printf("\n");
 		}
 	}
-	return 0;	
+	return 0;
 }
-
