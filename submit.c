@@ -58,7 +58,7 @@ int cmpDecrease(const void *a, const void *b)
     return v - u;
 }
 
-// hoán giá trị 2 con tro
+// hoán giá trị 2 con trỏ
 void swap(int *a, int *b)
 {
     int temp = *a;
