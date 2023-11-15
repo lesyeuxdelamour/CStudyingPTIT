@@ -5,13 +5,15 @@
 #include <string.h>
 #include <ctype.h>
 #define MAX 1000001
+#define MOD 1e9 + 7
 #define size 101
 
 typedef long long ll;
 typedef unsigned long long ull;
+typedef long double ld;
 
 bool prime[MAX];
-ull fibo[93], val[78498];
+ull fibo[93], factorial[21], val[78498];
 
 // sàng số nguyên tố
 void sievePrime()
@@ -25,12 +27,20 @@ void sievePrime()
 }
 
 // quy hoạch động mảng số Fibonacci
-void dpFibo()
+void dpFibonacci()
 {
     fibo[0] = 0;
     fibo[1] = fibo[2] = 1;
     for (int i = 3; i < 93; ++i)
         fibo[i] = fibo[i - 1] + fibo[i - 2];
+}
+
+// quy hoạch động mảng giai thừa
+void dpFactorial()
+{
+    factorial[0] = 1;
+    for (int i = 1; i <= 20; ++i)
+        factorial[i] = factorial[i - 1] * i;
 }
 
 // mảng số nguyên tố
@@ -94,6 +104,25 @@ int minEle(int *arr, int n)
     return res;
 }
 
+// vị trí phần tử lớn, bé nhất (không phải duy nhất)
+int maxID(int *arr, int n)
+{
+    int max_id = 0;
+    for (int i = 1; i < n; ++i)
+        if (arr[i] > arr[max_id])
+            max_id = i;
+    return max_id;
+}
+
+int minID(int *arr, int n)
+{
+    int min_id = 0;
+    for (int i = 1; i < n; ++i)
+        if (arr[i] < arr[min_id])
+            min_id = i;
+    return min_id;
+}
+
 // viết thường, HOA cả xâu
 void strlower(char *str)
 {
@@ -115,19 +144,19 @@ void transporeMatrix(int arr[size][size], int arr_t[size][size], int m, int n)
             arr_t[i][j] = arr[j][i];
 }
 
-//nhân ma trận
+// nhân ma trận
 void matrixProduct(int arr1[size][size], int arr2[size][size], int arr1x2[size][size], int m, int n, int p)
 {
     for (int i = 0; i < m; ++i)
-		{
-			for (int j = 0; j < p; ++j)
-			{
-				for (int k = 0; k < n; ++k)
-					arr1x2[i][j] += arr1[i][k] * arr2[k][j];
-				printf("%d ", arr1x2[i][j]);
-			}
-			printf("\n");
-		}
+    {
+        for (int j = 0; j < p; ++j)
+        {
+            for (int k = 0; k < n; ++k)
+                arr1x2[i][j] += arr1[i][k] * arr2[k][j];
+            printf("%d ", arr1x2[i][j]);
+        }
+        printf("\n");
+    }
 }
 
 void hePTbac2(int *a, int *b, int *c, int *d, int *e, int *f)
@@ -139,7 +168,13 @@ void hePTbac2(int *a, int *b, int *c, int *d, int *e, int *f)
 
 int main()
 {
-
+    sievePrime();
+    dpFibonacci();
+    dpFactorial();
+    primeArray();
+    int n;
+    scanf("%d", &n);
+    printf("%llu\n%llu\n%llu\n", val[n], fibo[n], factorial[n]);
     return 0;
 }
 

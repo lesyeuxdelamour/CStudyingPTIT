@@ -1,54 +1,40 @@
-#include<stdio.h>
-#include<stdlib.h>
-#define size 200
+#include <stdio.h>
+#include <stdlib.h>
 
-int min(int a, int b)
-{
-	return a < b ? a : b;
-}
+int arr[201], temparr[201];
 
-void input(int *arr, int *temparr, int n)
+int cmp(const void *a, const void *b)
 {
-	for(int i = 0; i < n; i++)
-	{
-		scanf("%d", &arr[i]);
-		temparr[i] = arr[i];
-	}
-}
-
-int cmp(const void *a, const void *b) 
-{
-    int x = *(int*)a;
-    int y = *(int*)b;
-    return x > y ? 1 : -1;
-}
-
-void solve()
-{
-	int n, arr[size], temparr[size];
-		scanf("%d", &n);
-	input(arr, temparr, n);
-	qsort(arr, n, sizeof(int), cmp);
-	int start = 0, end = n-1, step = 0;
-	while(start < end)
-	{
-		step+=abs(arr[end]-arr[start]);
-		start++;
-		end--;
-	}
-	if(n%2)
-		printf("%d %d", step, arr[n/2]);
-	else
-		for(int i = 0; i < n; i++)
-			if(temparr[i] == arr[n/2] || temparr[i] == arr[n/2-1])
-			{
-				printf("%d %d", step, temparr[i]);
-				break;
-			}
+	int u = *(int *)a;
+	int v = *(int *)b;
+	return u - v;
 }
 
 int main()
 {
-	solve();
+	int n;
+	scanf("%d", &n);
+	for (int i = 0; i < n; ++i)
+	{
+		scanf("%d", &arr[i]);
+		temparr[i] = arr[i];
+	}
+	qsort(arr, n, sizeof(int), cmp);
+	int start = 0, end = n - 1, step = 0;
+	while (start < end)
+	{
+		step += abs(arr[end] - arr[start]);
+		start++;
+		end--;
+	}
+	if (n % 2)
+		printf("%d %d", step, arr[n / 2]);
+	else
+		for (int i = 0; i < n; ++i)
+			if (temparr[i] == arr[n / 2] || temparr[i] == arr[n / 2 - 1])
+			{
+				printf("%d %d", step, temparr[i]);
+				break;
+			}
 	return 0;
 }
