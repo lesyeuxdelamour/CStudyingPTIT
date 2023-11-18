@@ -17,7 +17,12 @@ int main()
 		for(int j = 0; j < n; ++j)
 			scanf("%d", &arr[i][j]);
 	if (n == 2)
-		printf("%d %d", 0, arr[0][1]);
+	{
+		if(!rand()%2)
+			printf("%d %d", 0, arr[0][1]);
+		else
+			printf("%d %d", arr[1][0], 0);
+	}
 	else
 	{
 		for (int i = 1; i < n - 1; ++i)

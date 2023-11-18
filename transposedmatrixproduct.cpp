@@ -23,11 +23,12 @@ int main()
 				scanf("%d", &arr[i][j]);
 		transpose(arr, arr_t, m, n);
 		printf("Test %d:\n", test);
-		memset(arrx_t, 0, sizeof(arrx_t)); 
+//		memset(arrx_t, 0, sizeof(arrx_t)); 
 		for (int i = 0; i < m; ++i)
 		{
 			for (int j = 0; j < m; ++j)
 			{
+				arrx_t[i][j] = 0;
 				for (int k = 0; k < n; ++k)
 					arrx_t[i][j] += arr[i][k] * arr_t[k][j];
 				printf("%d ", arrx_t[i][j]);
