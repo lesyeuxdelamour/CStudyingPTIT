@@ -191,6 +191,8 @@ int tohopchap2(int n)
 	return n * (n - 1) / 2;
 }
 
+//Appearcance Sort:
+
 struct tag
 {
 	int val, pos, app;
@@ -252,7 +254,7 @@ int main()
 		qsort(sorted, count, sizeof(struct tag), cmpapp);
 		for (int i = 0; i < count; ++i)
 		{
-			for (int j = 0; j < sorted[i].app; ++j)
+			for (int x = 0; x < sorted[i].app; ++x)
 				printf("%d ", sorted[i].val);
 		}
 		printf("\n");
