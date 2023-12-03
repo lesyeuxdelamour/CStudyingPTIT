@@ -212,8 +212,8 @@ int cmpapp(const void *a, const void *b)
 	struct tag u = *(struct tag *)a;
 	struct tag v = *(struct tag *)b;
 	if (u.app == v.app)
-		return u.pos - v.pos;
-	return v.app - u.app;
+		return u.pos > v.pos;
+	return u.app < v.app;
 }
 
 int main()
