@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <string.h>
 
 int arr[50][50], arr_t[50][50], arrx_t[50][50];
 
@@ -23,7 +22,6 @@ int main()
 				scanf("%d", &arr[i][j]);
 		transpose(arr, arr_t, m, n);
 		printf("Test %d:\n", test);
-//		memset(arrx_t, 0, sizeof(arrx_t)); 
 		for (int i = 0; i < m; ++i)
 		{
 			for (int j = 0; j < m; ++j)
