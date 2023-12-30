@@ -1,19 +1,18 @@
 #include<stdio.h>
 #include<math.h>
-#include<stdbool.h>
 
-bool nondecrease(int n)
+int nondecrease(int n)
 {
-	int i = n%10;
-	n/=10;
-	while(n > 0)
+	int tmp = n%10;
+	n /= 10;
+	while(n)
 	{
-		if(i < n%10)
-			return false;
-		i = n%10;
-		n/=10;
+		if(tmp < n%10)
+			return 0;
+		tmp = n%10;
+		n /= 10;
 	}
-	return true;
+	return 1;
 }
 
 void listing()
@@ -33,7 +32,5 @@ int main()
 	int t = 0;
 		scanf("%d", &t);
 	while(t--)
-	{
 		listing();
-	}
 }
