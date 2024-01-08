@@ -1,38 +1,32 @@
-#include<stdio.h>
-#include<string.h>
-#include<stdlib.h>
-#include<ctype.h>
+#include <stdio.h>
+#include <string.h>
 
-void solve()
+char val(int n)
 {
-	int num, base, count = 0;
-		scanf("%d%d", &num, &base);
-	if(num == 0)
-	{
-		printf("0\n");
-		return;
-	}
-	char result[10];
-	while(num)
-	{
-		int res = num%base;
-		if(res < 10)
-			result[count++] = res + '0';
-		else
-			result[count++] = res - 10 +'A';
-		num/=base;
-	}
-	result[count] = '\0';
-	int n = strlen(result);
-	for(int i = n; i >= 0; i--)
-		printf("%c", result[i]);
+	if(n < 10)
+		return n + '0';
+	return n - 10 + 'A';
 }
 
 int main()
 {
 	int t;
-		scanf("%d", &t);
+	scanf("%d", &t);
 	while(t--)
-		solve();
+	{
+		int n, base;
+		scanf("%d%d", &n, &base);
+		char ans[100];
+		int cnt = 0;
+		while(n)
+		{
+			int x = n%base;
+			ans[cnt++] = val(x);
+			n /= base;
+		}
+		for(int i = cnt - 1; i >= 0; --i)
+			printf("%c", ans[i]);
+		printf("\n");
+	}
 	return 0;
 }

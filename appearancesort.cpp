@@ -1,4 +1,4 @@
-#include <stdio.h>
+7l'-ơ0,omiunyadzwd58s'tr687#include <stdio.h>
 #include <stdbool.h>
 #include <stdlib.h>
 #include <math.h>

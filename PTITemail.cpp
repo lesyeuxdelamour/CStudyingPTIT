@@ -11,7 +11,7 @@ void strlower(char *str)
 int main()
 {
 	char name[51], word[11][11];
-	gets(name);
+	fgets(name, 51, stdin);
 	strlower(name);
 	int n = 0;
 	char *token = strtok(name, " ");
@@ -22,5 +22,6 @@ int main()
 	}
 	for (int i = 0; i < n - 1; ++i)
 		printf("%c", word[i][0]);
+	word[n - 1][strlen(word[n - 1]) - 1] = '\0';
 	printf("%s@ptit.edu.vn", word[n - 1]);
 }
