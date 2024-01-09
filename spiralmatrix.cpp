@@ -17,7 +17,7 @@ int main()
 			arr[size - 1][j] = val++;
 		for (int i = size - 1; i > n - size; --i)
 			arr[i][n - size] = val++;
-		size -= 1;
+		size--;
 	}
 	if (n % 2)
 		arr[n / 2][n / 2] = val;

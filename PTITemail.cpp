@@ -24,4 +24,5 @@ int main()
 		printf("%c", word[i][0]);
 	word[n - 1][strlen(word[n - 1]) - 1] = '\0';
 	printf("%s@ptit.edu.vn", word[n - 1]);
+	return 0;
 }
