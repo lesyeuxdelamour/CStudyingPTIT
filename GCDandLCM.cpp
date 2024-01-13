@@ -1,26 +1,36 @@
 #include<stdio.h>
 
-int gcd(long a, long b)
+typedef long long ll;
+
+ll gcd(ll a, ll b)
 {
-	while(a != b)
+	ll tmp;
+	while(b)
 	{
-		if(a > b)
-			a -= b;
-		else
-			b -= a;
+		tmp = a%b;
+		a = b;
+		b = tmp;
 	}
 	return a;
 }
 
-int lcm(long a, long b)
+ll lcm(ll a, ll b)
 {
-	return (a*b)/gcd(a, b);
+    ll tmp, k = a * b;
+    while(b) 
+	{
+        tmp = a%b;
+        a = b;
+        b = tmp;
+    }
+    return k / a;
 }
 
 int main()
 {
-	long a = 0, b = 0;
-		scanf("%ld %ld", &a, &b);
-		printf("%ld\n%ld", gcd(a, b), lcm(a, b));
+	ll a, b;
+	scanf("%lld%lld", &a, &b);
+	printf("%lld\n%lld", gcd(a, b), lcm(a, b));
 }
 
+//Note: BCNN có thể lớn hơn 2^31

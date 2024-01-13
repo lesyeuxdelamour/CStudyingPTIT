@@ -1,10 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int lcm (int a, int b)
+int lcm(int a, int b)
 {
     int tmp, k = a * b;
-    while(b != 0) {
+    while(b) {
         tmp = a % b;
         a = b;
         b = tmp;
