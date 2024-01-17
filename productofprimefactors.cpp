@@ -2,26 +2,25 @@
 
 int main()
 {
-	int t = 0;
-		scanf("%d", &t);
+	int t;
+	scanf("%d", &t);
 	while(t--)
 	{
-		long long n = 0; int product = 1, temp = 0;
-			scanf("%lld", &n);
+		int n, ans = 1;
+		scanf("%d", &n);
 		for(int i = 2; i*i <= n; i++)
 		{
+			int cnt = 0;
 			while(n%i == 0)
 			{
 				n/=i;
-				if(i != temp)
-				{
-					temp = i;
-					product*=temp;
-				}		
+				cnt = 1;	
 			}
+			if(cnt)	
+				ans*=i;
 		}
-		if(n > 2)
-			product*=n;
-		printf("%d\n", product);
+		if(n > 1)
+			ans*=n;
+		printf("%d\n", ans);
 	}
 }

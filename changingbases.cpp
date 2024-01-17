@@ -18,6 +18,8 @@ int main()
 		scanf("%d%d", &n, &base);
 		char ans[100];
 		int cnt = 0;
+		if(n == 0)
+			printf("0\n");
 		while(n)
 		{
 			int x = n%base;
