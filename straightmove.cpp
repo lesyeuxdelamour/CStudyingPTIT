@@ -25,7 +25,7 @@ int main()
 		if(a == b)
 			printf("%d\n", cnt);
 		else
-			printf("%d\n", cnt+1);
+			printf("%d\n", cnt + 1);
 	}
 	return 0;
 }

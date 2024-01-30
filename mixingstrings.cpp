@@ -1,53 +1,52 @@
 #include <stdio.h>
 #include <string.h>
 
-void mix(char *s1, char *s2, char *s12, int t)
+void mix(char s1[], char s2[], char s[], int len)
 {
-	for (int i = 0, j = 0; i < t, j < 2 * t; i++, j += 2)
+	for(int i = 0, j = 0; i < len, j < len*2; ++i, j+=2)
 	{
-		s12[j] = s2[i];
-		s12[j + 1] = s1[i];
+		s[j] = s2[i];
+		s[j+1] = s1[i];
 	}
-	s12[2 * t] = '\0';
+	s[len*2] = '\0';
 }
 
-void split(char *s1, char *s2, char *s12, int t)
+void split(char s1[], char s2[], char s[], int len)
 {
-	for (int i = 0; i < t; ++i)
+	for(int i = 0; i < len; ++i)
 	{
-		s1[i] = s12[i];
-		s2[i] = s12[i + t];
-	}
-}
-
-int solve(int t)
-{
-	char s1[t + 1], s2[t + 1], s12[2 * t + 1];
-	scanf("%s%s%s", s1, s2, s12);
-	char c1[t + 1], c2[t + 1], c12[2 * t + 1];
-	strcpy(c1, s1);
-	strcpy(c2, s2);
-	int count = 0;
-	while (1)
-	{
-		count++;
-		mix(c1, c2, c12, t);
-		if (strcmp(s12, c12) == 0)
-			return count;
-		split(c1, c2, c12, t);
-		if (strcmp(c1, s1) == 0 && strcmp(c2, s2) == 0)
-			return -1;
+		s1[i] = s[i];
+		s2[i] = s[i + len];
 	}
 }
 
 int main()
 {
-	int t = -1;
-	while (t)
+	int n;
+	scanf("%d", &n);
+	while(n)
 	{
-		scanf("%d\n", &t);
-		if (t)
-			printf("%d\n", solve(t));
-	}
+		char s1[n + 1], s2[n + 1], s[n*2 + 1];
+		scanf("%s%s%s", s1, s2, s);
+		char c1[n + 1], c2[n + 1], c[n*2 + 1];
+		strcpy(c1, s1);
+		strcpy(c2, s2);		
+		int cnt = 0;
+		while(1)
+		{
+			mix(c1, c2, c, n);
+			cnt++;
+			if(strcmp(c, s) == 0)
+				break;
+			split(c1, c2, c, n);
+			if(strcmp(c1, s1) == 0 && strcmp(c2, s2) == 0)
+			{
+				cnt = -1;
+				break;
+			}
+		}
+		printf("%d\n", cnt);
+		scanf("%d", &n);	
+	}	
 	return 0;
 }

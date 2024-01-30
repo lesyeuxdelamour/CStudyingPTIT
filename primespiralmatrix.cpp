@@ -4,7 +4,7 @@
 #define MAX 1000001
 
 bool prime[MAX];
-int arr[20][20], val[78498];
+int val[78498];
 
 void sieve()
 {
@@ -25,12 +25,13 @@ void sieve()
 int main()
 {
 	sieve();
-	int t, test;
+	int t, test = 0;
 	scanf("%d", &t);
 	while (test++ < t)
 	{
 		int n, count = 0;
 		scanf("%d", &n);
+		int arr[n][n];
 		int size = n;
 		while (size > n / 2)
 		{
