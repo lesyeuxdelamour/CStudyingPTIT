@@ -3,7 +3,8 @@
         "cmath": "cpp",
         "bit": "cpp",
         "limits": "cpp",
-        "*.tcc": "cpp"
+        "*.tcc": "cpp",
+        "ostream": "cpp"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }
