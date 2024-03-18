@@ -20,14 +20,7 @@ int main()
 		{
 			if (count[arr[i]])
 			{
-				printf("%d appears %d times\n", arr[i], count[arr[i]]);
-				//Lỗi dịch thuật CodePTIT
-				/*
-				if(count[arr[i]] != 1)
-					printf("s\n");
-				else
-					printf("\n");
-				*/
+				printf("%d xuat hien %d lan\n", arr[i], count[arr[i]]);
 				count[arr[i]] = 0;
 			}
 		}

@@ -3,7 +3,7 @@
 int main()
 {
 	int t;
-		scanf("%d", &t);
+	scanf("%d", &t);
 	while(t--)
 	{
 		int i, n, odd = 0, even = 0;
