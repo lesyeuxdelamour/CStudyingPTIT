@@ -20,8 +20,6 @@ int main()
 		minU = min(minU, u);
 		minD = min(minD, d);
 	}
-	sumU += minD;
-	sumD += minU;
-	printf("%d", sumU > sumD ? sumU : sumD);
+	printf("%d", sumU > sumD ? sumU + minD: sumD + minU);
 	return 0;
 }
