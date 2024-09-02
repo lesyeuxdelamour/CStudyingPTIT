@@ -2,40 +2,6 @@
 #include <string.h>
 #include <stdlib.h>
 
-/*
-3
-
-Nguyen Van A
-
-12/12/1994
-
-3.5
-
-7.0
-
-5.5
-
-Nguyen Van B
-
-1/9/1994
-
-7.5
-
-9.5
-
-9.5
-
-Nguyen Van C
-
-6/7/1994
-
-4.5
-
-4.5
-
-5.0
-*/
-
 typedef struct SinhVien
 {
 	int stt;
